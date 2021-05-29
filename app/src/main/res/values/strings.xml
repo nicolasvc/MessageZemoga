@@ -2,4 +2,11 @@
     <string name="app_name">MessageZemoga</string>
     <string name="title_post">Post</string>
     <string name="title_favorites">Favorites</string>
+    <string name="delete_post">Delete all Posts</string>
+    <string name="tv_title_post">Title post</string>
+    <string name="body_post">Body post</string>
+    <string name="set_favorite_post">Set favorite post</string>
+    <string name="post_unread">Post unread</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
