@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MessageZemoga</string>
+    <string name="title_post">Publicaciones</string>
+    <string name="title_favorites">Favoritos</string>
+</resources>
