@@ -5,13 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.messagezemoga.origindata.room.dao.PostDao
+import com.example.messagezemoga.origindata.room.dao.UserDao
 import com.example.messagezemoga.origindata.room.entities.PostEntity
+import com.example.messagezemoga.origindata.room.entities.UserEntity
 
 
-@Database(entities = [PostEntity::class], version = 1)
+@Database(entities = [PostEntity::class, UserEntity::class], version = 1)
 abstract class PostRoomDatabase : RoomDatabase() {
 
     abstract fun postDao(): PostDao
+    abstract fun userDao(): UserDao
 
 
     companion object {

@@ -1,4 +1,4 @@
-package com.example.messagezemoga.origindata.repository.post
+package com.example.messagezemoga.origindata.repository.comment
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -16,59 +16,39 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import java.util.concurrent.Executors
 
-class PostRepository {
+class CommentRepository {
 
-    private lateinit var listPost: MutableLiveData<List<Post>>
-    private var listPostRoom: LiveData<List<PostEntity>>
-    private var postDao: PostDao? = null
+    private lateinit var listComment: MutableLiveData<List<CommentPost>>
 
 
     init {
         val dataBase = PostRoomDatabase.getDataBase(MyApp.applicationContext())
-        postDao = dataBase.postDao()
-        listPostRoom = postDao!!.getAllPost()
     }
 
 
     fun insertPost(postEntity: PostEntity) {
         val executor = Executors.newSingleThreadExecutor()
         executor.execute {
-            postDao!!.insertPost(postEntity)
+            //postDao!!.insertPost(postEntity)
         }
     }
 
-    fun deleteAllPost(){
-        val executor = Executors.newSingleThreadExecutor()
-        executor.execute {
-            postDao!!.deleteAllPost()
-        }
-    }
+    // fun getAllPostRoom(): LiveData<List<PostEntity>> = listPostRoom
 
-    fun deletePost(idPost:Int){
-        val executor = Executors.newSingleThreadExecutor()
-        executor.execute {
-            postDao!!.deletePost(idPost)
-        }
-    }
 
-    fun getAllPostRoom(): LiveData<List<PostEntity>> = listPostRoom
-
-    fun getAllPost(): MutableLiveData<List<Post>> {
-        listPost = MutableLiveData()
-        PostClient.getClient().getAllPost()
+    fun getAllCommentByPost(idPost: String): MutableLiveData<List<CommentPost>> {
+        listComment = MutableLiveData()
+        PostClient.getClient().getAllCommentByPost(idPost)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onSuccess = {
-                    listPost.value = it
+                    listComment.value = it
                 },
                 onError = {
                     Log.e("ErrorConsukta", it.toString())
                 }
             )
-        return listPost
+        return listComment
     }
-
-
-
 }

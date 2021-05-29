@@ -8,4 +8,15 @@
     <string name="body_post">Cuerpo publicación</string>
     <string name="set_favorite_post">Marcar como favorito</string>
     <string name="post_unread">Publicación sin leer</string>
+    <string name="size_comments">Comentarios (%s)</string>
+    <string name="ask_delete_all_post">Estas seguro de eliminar todos los post?</string>
+    <string name="title_delete_post">Eliminar posts</string>
+    <string name="title_cancel_btn">Cancelar</string>
+    <string name="title_delete_btn">Eliminar</string>
+    <string name="user">Usuario</string>
+    <string name="email">Correo electronico</string>
+    <string name="phone">Numero celular</string>
+    <string name="web">Pagina web</string>
+    <string name="make_favorite_post">!Vuelvelo tu favorito!</string>
+    <string name="post_delete">El post fue eliminado correctamente</string>
 </resources>

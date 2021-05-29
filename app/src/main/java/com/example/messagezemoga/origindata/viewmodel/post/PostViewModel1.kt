@@ -16,5 +16,10 @@ class PostViewModel1 : ViewModel() {
 
     fun insertPost(postEntity: PostEntity) = postRepository.insertPost(postEntity)
 
+    fun deleteAllPost() = postRepository.deleteAllPost()
+
+    fun deletePostById(idPost:Int) = postRepository.deletePost(idPost)
+
+
 
 }

@@ -14,6 +14,7 @@
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        app:tint="@color/white"
         android:contentDescription="@string/delete_post"
         android:focusable="true"
         android:src="@drawable/ic_baseline_delete_24"

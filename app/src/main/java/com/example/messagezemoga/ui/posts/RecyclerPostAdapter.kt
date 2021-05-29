@@ -67,4 +67,6 @@ class RecyclerPostAdapter(
         fun onClickPost(post: PostEntity)
     }
     //endregion
+
+
 }

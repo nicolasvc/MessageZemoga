@@ -7,6 +7,15 @@
     <string name="body_post">Body post</string>
     <string name="set_favorite_post">Set favorite post</string>
     <string name="post_unread">Post unread</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="size_comments">Comments (%s)</string>
+    <string name="ask_delete_all_post">Are you sure to delete all posts?</string>
+    <string name="title_delete_post">Delete posts</string>
+    <string name="title_cancel_btn">Cancel</string>
+    <string name="title_delete_btn">Delete</string>
+    <string name="user">User</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="web">Web</string>
+    <string name="make_favorite_post">Make favorite post</string>
+    <string name="post_delete">The post was successfully deleted</string>
 </resources>

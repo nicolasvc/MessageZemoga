@@ -16,15 +16,17 @@ interface PostDao {
     fun getAllPost(): LiveData<List<PostEntity>>
 
     @Insert
-    fun insertPost(post:PostEntity)
+    fun insertPost(post: PostEntity)
 
     @Update
     fun updatePost(post: PostEntity)
 
     @Query("DELETE FROM Posts")
     fun deleteAllPost()
-    //endregion
 
+    @Query("DELETE FROM Posts where id=:idPost")
+    fun deletePost(idPost: Int)
+    //endregion
 
 
 }
