@@ -32,5 +32,7 @@
     <string name="next">Next</string>
     <string name="empty_post">There are no new posts please reload to get new posts and continue enjoying</string>
 
+    <string name="empty_list_post">No internet connection found please verify</string>
+
 
 </resources>

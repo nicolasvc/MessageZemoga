@@ -1,10 +1,8 @@
 package com.example.messagezemoga.origindata.repository.post
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.messagezemoga.di.application.MyApp
-import com.example.messagezemoga.entities.CommentPost
 import com.example.messagezemoga.entities.Post
 import com.example.messagezemoga.origindata.post.PostClient
 import com.example.messagezemoga.origindata.room.DataBase.PostRoomDatabase
@@ -75,7 +73,7 @@ class PostRepository {
                     listPost.value = it
                 },
                 onError = {
-                    Log.e("ErrorConsukta", it.toString())
+                    listPost.value = LinkedList()
                 }
             )
         return listPost

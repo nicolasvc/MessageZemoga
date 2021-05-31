@@ -112,17 +112,18 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
     }
 
     private fun showMessage() {
-        val dialogoCierre = AlertDialog.Builder(context)
-        dialogoCierre.setMessage(requireContext().getString(R.string.ask_delete_all_post))
+        val dialogDeletePost = AlertDialog.Builder(context)
+        dialogDeletePost.setMessage(requireContext().getString(R.string.ask_delete_all_post))
             .setTitle(requireContext().getString(R.string.title_delete_post))
-        dialogoCierre.setPositiveButton(requireContext().getString(R.string.title_delete_btn)) { dialog, _ ->
+        dialogDeletePost.setPositiveButton(requireContext().getString(R.string.title_delete_btn)) { dialog, _ ->
             dialog.dismiss()
             postViewModel.deleteAllPost()
             showEmptyPost(true)
         }
-        dialogoCierre.setNegativeButton(requireContext().getString(R.string.title_cancel_btn)) { dialog, _ -> dialog.dismiss() }
-        dialogoCierre.create()
-        dialogoCierre.show()
+        dialogDeletePost.setNegativeButton(requireContext().getString(R.string.title_cancel_btn)) { dialog, _ -> dialog.dismiss() }
+        dialogDeletePost.create()
+        dialogDeletePost.setCancelable(true)
+        dialogDeletePost.show()
     }
 
     private fun showEmptyPost(isEmpty: Boolean) {
@@ -148,6 +149,7 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
         shimmerloaddata.stopShimmer()
         shimmerloaddata.visibility = View.VISIBLE
         postViewModel.getAllPost().observe(viewLifecycleOwner, { listPosts ->
+            if(listPosts.isEmpty()) Snackbar.make(requireView(),requireContext().getString(R.string.empty_list_post),Snackbar.LENGTH_LONG).show()
             almacenarPost(listPosts)
             SharedManager.obtenerInstancia()
                 .almacenar(SharedConstants.INGRESO_PRIMERA_VEZ, true)

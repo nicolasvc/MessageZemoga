@@ -34,4 +34,6 @@
     <string name="get_started">Empezemos</string>
     <string name="next">Siguiente</string>
     <string name="empty_post">No hay posts nuevos por favor recarga para obtener nuevos posts y seguir disfrutando</string>
+
+    <string name="empty_list_post">No se encontro una conexión a internet por favor verifique</string>
 </resources>
