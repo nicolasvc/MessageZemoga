@@ -27,9 +27,10 @@
     <string name="tile_explication_screen_2">Interact with users</string>
     <string name="decription_screen_2">You can read the comments of the users of any post which allows you greater interaction with them</string>
     <string name="tile_explication_screen_3">Delete post</string>
-    <string name="decription_screen_3">If you dont like any publication, you can delete one or all of it and reload new publications with a single click.</string>
+    <string name="decription_screen_3">If you do not like any publication you can delete it by moving the post to the right and left or all at the same time and reload new publications with a single click</string>
     <string name="get_started">Get Started</string>
     <string name="next">Next</string>
+    <string name="empty_post">There are no new posts please reload to get new posts and continue enjoying</string>
 
 
 </resources>

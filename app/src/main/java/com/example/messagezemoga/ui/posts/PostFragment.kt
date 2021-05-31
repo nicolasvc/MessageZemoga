@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
 import androidx.core.os.bundleOf
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -34,6 +35,7 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
     private var navController: NavController? = null
     private lateinit var listPostInit: List<PostEntity>
     private var isDeletePost: Boolean = false
+    private var amountOfpost = 20
     //endregion
 
     //region Overload fragment
@@ -63,6 +65,8 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
         initView()
     }
 
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -71,8 +75,7 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.reloadPost -> {
-            return true
-            //getAllPost()
+                getAllPost()
             }
             else -> super.onOptionsItemSelected(item)
         }
@@ -92,6 +95,16 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
         initlistenerFabIcon()
         initanimatedRecycler()
         obtainAllPost()
+        initListenerScrollView()
+    }
+
+    private fun initListenerScrollView() {
+        scroll_view.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
+            if (scrollY == v!!.getChildAt(0).measuredHeight - v.measuredHeight) {
+                amountOfpost += 20
+                obtainTweentyPost(amountOfpost)
+            }
+        })
     }
 
     private fun initlistenerFabIcon() {
@@ -105,10 +118,18 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
         dialogoCierre.setPositiveButton(requireContext().getString(R.string.title_delete_btn)) { dialog, _ ->
             dialog.dismiss()
             postViewModel.deleteAllPost()
+            showEmptyPost(true)
         }
         dialogoCierre.setNegativeButton(requireContext().getString(R.string.title_cancel_btn)) { dialog, _ -> dialog.dismiss() }
         dialogoCierre.create()
         dialogoCierre.show()
+    }
+
+    private fun showEmptyPost(isEmpty: Boolean) {
+        if (isEmpty)
+            screen_empty_posts.visibility = View.VISIBLE
+        else
+            screen_empty_posts.visibility = View.GONE
     }
 
     private fun initanimatedRecycler() {
@@ -116,17 +137,29 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
         touchHelper.attachToRecyclerView(recycler_view)
     }
 
+    private fun getAllPost(): Boolean {
+        postViewModel.deleteAllPost()
+        showEmptyPost(false)
+        getAllPostService()
+        return true
+    }
+
+    private fun getAllPostService() {
+        shimmerloaddata.stopShimmer()
+        shimmerloaddata.visibility = View.VISIBLE
+        postViewModel.getAllPost().observe(viewLifecycleOwner, { listPosts ->
+            almacenarPost(listPosts)
+            SharedManager.obtenerInstancia()
+                .almacenar(SharedConstants.INGRESO_PRIMERA_VEZ, true)
+            obtainPostRoom()
+        })
+    }
 
     private fun obtainAllPost() {
         val firstLogin = SharedManager.obtenerInstancia()
             .obtener(SharedConstants.INGRESO_PRIMERA_VEZ, Boolean::class.java)
         if (firstLogin == null || !firstLogin) {
-            postViewModel.getAllPost().observe(viewLifecycleOwner, { listPosts ->
-                almacenarPost(listPosts)
-                SharedManager.obtenerInstancia()
-                    .almacenar(SharedConstants.INGRESO_PRIMERA_VEZ, true)
-                obtainPostRoom()
-            })
+            getAllPostService()
         } else {
             obtainPostRoom()
         }
@@ -137,12 +170,24 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
             shimmerloaddata.stopShimmer()
             shimmerloaddata.visibility = View.GONE
             recycler_view.visibility = View.VISIBLE
+            showEmptyPost(false)
             listPostInit = listPost
-            recyclerPostAdapter.setListPost(listPost)
-            recyclerPostAdapter.notifyDataSetChanged()
+            obtainTweentyPost(20)
             if (!isDeletePost)
                 recycler_view.scheduleLayoutAnimation()
         })
+    }
+
+
+    private fun obtainTweentyPost(cantidadRegistros: Int) {
+        val newList = mutableListOf<PostEntity>()
+        if (listPostInit.isEmpty()) showEmptyPost(true)
+        listPostInit.forEachIndexed { index, postEntity ->
+            if (index <= cantidadRegistros - 1)
+                newList.add(postEntity)
+        }
+        recyclerPostAdapter.setListPost(newList)
+        recyclerPostAdapter.notifyDataSetChanged()
     }
 
 
@@ -172,7 +217,11 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
 
     private fun deletePost(position: Int) {
         isDeletePost = true
-        Snackbar.make(requireView(),requireContext().getString(R.string.post_delete),Snackbar.LENGTH_LONG).show()
+        Snackbar.make(
+            requireView(),
+            requireContext().getString(R.string.post_delete),
+            Snackbar.LENGTH_LONG
+        ).show()
         postViewModel.deletePostById(listPostInit[position].id)
     }
     //endregion
@@ -208,8 +257,8 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
     override fun onClickPost(post: PostEntity) {
         val bundle = bundleOf(
             CommonsConstants.BUNDLE_ID_POST to post.id,
-            CommonsConstants.BUNDLE_ID_USER to post.userId,
-            CommonsConstants.BUNDLE_DESCRIPTION_POST to post.body)
+            CommonsConstants.BUNDLE_ID_USER to post.userId
+        )
         navController!!.navigate(R.id.action_navigation_home_to_descripcionPostFragment, bundle)
     }
     //endregion

@@ -17,6 +17,7 @@ import com.example.messagezemoga.origindata.viewmodel.post.PostViewModel
 import com.example.messagezemoga.origindata.viewmodel.user.UserViewModel
 import com.example.messagezemoga.transversal.constants.CommonsConstants
 import com.example.messagezemoga.transversal.helperimage.HelperImage
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_descripcion_post.*
 import kotlinx.android.synthetic.main.item_post_complete.*
 import kotlinx.android.synthetic.main.shrimer_load.*
@@ -33,7 +34,6 @@ class DescripcionPostFragment : Fragment() {
     private lateinit var postViewModel: PostViewModel
     private var idPost: Int = 0
     private var idUser: Int = 0
-    private lateinit var bodyPost: String
     private lateinit var postEntity: PostEntity
     private lateinit var menu: Menu
     //endregion
@@ -44,7 +44,6 @@ class DescripcionPostFragment : Fragment() {
         super.onCreate(savedInstanceState)
         idPost = arguments?.getInt(CommonsConstants.BUNDLE_ID_POST)!!
         idUser = arguments?.getInt(CommonsConstants.BUNDLE_ID_USER)!!
-        bodyPost = arguments?.getString(CommonsConstants.BUNDLE_DESCRIPTION_POST)!!
         setHasOptionsMenu(true)
     }
 

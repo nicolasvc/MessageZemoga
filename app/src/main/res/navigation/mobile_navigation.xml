@@ -23,7 +23,11 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.messagezemoga.ui.favoritepost.FavoriteFragment"
         android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_descripcionPostFragment"
+            app:destination="@id/descripcionPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/descripcionPostFragment"
         android:name="com.example.messagezemoga.ui.descriptionpost.DescripcionPostFragment"

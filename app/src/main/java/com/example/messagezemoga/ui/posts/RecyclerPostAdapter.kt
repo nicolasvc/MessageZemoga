@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.messagezemoga.R
-import com.example.messagezemoga.entities.Post
 import com.example.messagezemoga.origindata.room.entities.PostEntity
 
 class RecyclerPostAdapter(

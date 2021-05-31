@@ -28,9 +28,10 @@
     <string name="tile_explication_screen_2">Interactúa con los usuarios</string>
     <string name="decription_screen_2">Puedes leer los comentarios de los usuarios de cualquier post lo cual te permite mayor interaccion con ellos</string>
     <string name="tile_explication_screen_3">Eliminar publicaciones</string>
-    <string name="decription_screen_3">Si alguna publicacion no te gusto puedes borrarlo una o todas y volver a cargar nuevas publicaciones con un solo click</string>
+    <string name="decription_screen_3">Si alguna publicacion no te gusto puedes borrarlo desplazando el post a la derecha y izquierda o todas al tiempo y volver a cargar nuevas publicaciones con un solo click</string>
 
 
     <string name="get_started">Empezemos</string>
     <string name="next">Siguiente</string>
+    <string name="empty_post">No hay posts nuevos por favor recarga para obtener nuevos posts y seguir disfrutando</string>
 </resources>

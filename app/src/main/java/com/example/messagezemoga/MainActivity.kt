@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+
+
     private fun validateInfoUser(){
         val firstLogin = SharedManager.obtenerInstancia()
             .obtener(SharedConstants.INGRESO_PRIMERA_VEZ, Boolean::class.java)
