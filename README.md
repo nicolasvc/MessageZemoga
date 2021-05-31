@@ -1,7 +1,7 @@
 # Message Zemoga
 
 Aplicación con el fin de poder visualizar multiples post consumiendo el api de https://jsonplaceholder.typicode.com/ como adición visualizar los comentarios de los usuarios con su 
-respectiva foto de perfil , seleccionar cualquier post como favorito y tambien marcarlo como leido y de igual forma tener su propia sección de favoritos para visualizarlos
+respectiva foto de perfil , seleccionar cualquier post como favorito y tambien marcarlo como leido y de igual forma tener su propia sección de favoritos para visualizarlos 
 
 
 
@@ -25,6 +25,8 @@ Poder visualizar 100 posts de usuarios a travez de una paginación de 20 en 20 p
 - Contiene un OnBoarding de la actividad que explica y simplifica que es la aplicación 
 
 - Almacenar los post que son favoritos y demas
+
+- Es multilenguaje el aplicativo para ingles y español 
 ```
 
 ## Tecnologia aplicativo
