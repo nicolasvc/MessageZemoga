@@ -6,7 +6,7 @@ import com.example.messagezemoga.entities.Post
 import com.example.messagezemoga.origindata.repository.post.PostRepository
 import com.example.messagezemoga.origindata.room.entities.PostEntity
 
-class PostViewModel1 : ViewModel() {
+class PostViewModel : ViewModel() {
 
     private val postRepository = PostRepository()
 
@@ -16,10 +16,15 @@ class PostViewModel1 : ViewModel() {
 
     fun insertPost(postEntity: PostEntity) = postRepository.insertPost(postEntity)
 
+    fun updatePost(postEntity: PostEntity) = postRepository.updatePost(postEntity)
+
     fun deleteAllPost() = postRepository.deleteAllPost()
 
-    fun deletePostById(idPost:Int) = postRepository.deletePost(idPost)
+    fun deletePostById(idPost: Int) = postRepository.deletePost(idPost)
 
+    fun getPostById(idPost: Int) = postRepository.getPostById(idPost)
+
+    fun getAllPostFav() = postRepository.getAllFavPost()
 
 
 }

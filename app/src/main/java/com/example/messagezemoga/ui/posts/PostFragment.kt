@@ -2,10 +2,7 @@ package com.example.messagezemoga.ui.posts
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import android.view.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,35 +15,46 @@ import com.example.messagezemoga.R
 import com.example.messagezemoga.databinding.FragmentPostBinding
 import com.example.messagezemoga.entities.Post
 import com.example.messagezemoga.origindata.room.entities.PostEntity
-import com.example.messagezemoga.origindata.viewmodel.post.PostViewModel1
+import com.example.messagezemoga.origindata.viewmodel.post.PostViewModel
 import com.example.messagezemoga.transversal.constants.CommonsConstants
 import com.example.messagezemoga.transversal.constants.SharedConstants
 import com.example.messagezemoga.transversal.sharedpreferences.SharedManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_post.*
+import kotlinx.android.synthetic.main.shrimer_load.*
 import java.util.*
 
 class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
 
     //region Properties
-    private lateinit var postViewModel: PostViewModel1
+    private lateinit var postViewModel: PostViewModel
     private var _binding: FragmentPostBinding? = null
     private lateinit var recyclerPostAdapter: RecyclerPostAdapter
     private val binding get() = _binding!!
-    var navController: NavController? = null
+    private var navController: NavController? = null
     private lateinit var listPostInit: List<PostEntity>
     private var isDeletePost: Boolean = false
     //endregion
 
     //region Overload fragment
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        postViewModel = ViewModelProvider(this).get(PostViewModel1::class.java)
+        postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
         _binding = FragmentPostBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_reload_post, menu)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,11 +63,26 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
         initView()
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.reloadPost -> {
+            return true
+            //getAllPost()
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        shimmerloaddata.startShimmer()
+    }
+
     //endregion
 
 
@@ -102,15 +125,18 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
                 almacenarPost(listPosts)
                 SharedManager.obtenerInstancia()
                     .almacenar(SharedConstants.INGRESO_PRIMERA_VEZ, true)
-                obtainPostRoom();
+                obtainPostRoom()
             })
         } else {
-            obtainPostRoom();
+            obtainPostRoom()
         }
     }
 
     private fun obtainPostRoom() {
         postViewModel.getAllPostRom().observe(viewLifecycleOwner, { listPost ->
+            shimmerloaddata.stopShimmer()
+            shimmerloaddata.visibility = View.GONE
+            recycler_view.visibility = View.VISIBLE
             listPostInit = listPost
             recyclerPostAdapter.setListPost(listPost)
             recyclerPostAdapter.notifyDataSetChanged()
@@ -153,7 +179,7 @@ class PostFragment : Fragment(), RecyclerPostAdapter.IlistenerPost {
 
 
     //region ListenerTouchRecycler
-    val itemTouchHelperCallback = object :
+    private val itemTouchHelperCallback = object :
         ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
         override fun onMove(
             recyclerView: RecyclerView,

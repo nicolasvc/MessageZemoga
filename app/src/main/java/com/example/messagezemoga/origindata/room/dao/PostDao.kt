@@ -15,6 +15,12 @@ interface PostDao {
     @Query("SELECT * FROM Posts")
     fun getAllPost(): LiveData<List<PostEntity>>
 
+    @Query("SELECT * FROM Posts WHERE isFavorite")
+    fun getAllPostFav(): LiveData<List<PostEntity>>
+
+    @Query("SELECT * FROM Posts where id=:idPost ")
+    fun getPostById(idPost: Int): LiveData<PostEntity>
+
     @Insert
     fun insertPost(post: PostEntity)
 

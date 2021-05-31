@@ -16,7 +16,21 @@
     <string name="user">Usuario</string>
     <string name="email">Correo electronico</string>
     <string name="phone">Numero celular</string>
-    <string name="web">Pagina web</string>
+    <string name="web">Página web</string>
     <string name="make_favorite_post">!Vuelvelo tu favorito!</string>
     <string name="post_delete">El post fue eliminado correctamente</string>
+    <string name="comments">Comentarios</string>
+    <string name="reload_post">Recarga las publicaciones</string>
+    <string name="select_fav">No tienes publicaciones favoritas, selecciona algunas</string>
+
+    <string name="tile_explication_screen_1">Lee publicaciones</string>
+    <string name="decription_screen_1">Lee multiples post de varios usuarios , marcalos como favoritos </string>
+    <string name="tile_explication_screen_2">Interactúa con los usuarios</string>
+    <string name="decription_screen_2">Puedes leer los comentarios de los usuarios de cualquier post lo cual te permite mayor interaccion con ellos</string>
+    <string name="tile_explication_screen_3">Eliminar publicaciones</string>
+    <string name="decription_screen_3">Si alguna publicacion no te gusto puedes borrarlo una o todas y volver a cargar nuevas publicaciones con un solo click</string>
+
+
+    <string name="get_started">Empezemos</string>
+    <string name="next">Siguiente</string>
 </resources>

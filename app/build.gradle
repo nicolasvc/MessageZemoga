@@ -79,4 +79,10 @@ dependencies {
 
     //Image Circle
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Shrim
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //CirleIndicator Viewpager
+    implementation 'me.relex:circleindicator:2.1.6'
 }

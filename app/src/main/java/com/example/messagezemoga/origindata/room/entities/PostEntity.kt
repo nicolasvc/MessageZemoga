@@ -11,6 +11,6 @@ class PostEntity(
     val userId: Int,
     @PrimaryKey
     var id: Int ,
-    val isRead: Boolean,
-    val isFavorite: Boolean
+    var isRead: Boolean,
+    var isFavorite: Boolean
 )

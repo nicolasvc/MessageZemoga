@@ -18,4 +18,18 @@
     <string name="web">Web</string>
     <string name="make_favorite_post">Make favorite post</string>
     <string name="post_delete">The post was successfully deleted</string>
+    <string name="comments">Comments</string>
+    <string name="reload_post">Reload post</string>
+    <string name="select_fav">You do not have favorite posts, select some</string>
+
+    <string name="tile_explication_screen_1">Read new posts</string>
+    <string name="decription_screen_1">Read multiple posts from various users, mark them as favorites</string>
+    <string name="tile_explication_screen_2">Interact with users</string>
+    <string name="decription_screen_2">You can read the comments of the users of any post which allows you greater interaction with them</string>
+    <string name="tile_explication_screen_3">Delete post</string>
+    <string name="decription_screen_3">If you dont like any publication, you can delete one or all of it and reload new publications with a single click.</string>
+    <string name="get_started">Get Started</string>
+    <string name="next">Next</string>
+
+
 </resources>

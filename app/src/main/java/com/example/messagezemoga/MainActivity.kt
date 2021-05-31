@@ -1,5 +1,6 @@
 package com.example.messagezemoga
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.example.messagezemoga.databinding.ActivityMainBinding
 import com.example.messagezemoga.origindata.viewmodel.user.UserViewModel
 import com.example.messagezemoga.transversal.constants.SharedConstants
 import com.example.messagezemoga.transversal.sharedpreferences.SharedManager
+import com.example.messagezemoga.ui.intro.IntroActvity
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         if(firstLogin == null){
             userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
             userViewModel.getAllUser()
+            val intentTest = Intent(this, IntroActvity::class.java)
+            startActivity(intentTest)
+
         }
     }
 }

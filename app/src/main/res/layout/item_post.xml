@@ -66,6 +66,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_title_post"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:tint ="#E1B61F"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_baseline_star_24" />
 
