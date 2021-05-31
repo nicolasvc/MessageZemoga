@@ -39,6 +39,7 @@ Poder visualizar 100 posts de usuarios a travez de una paginación de 20 en 20 p
 * Room : Se uso con el fin de poder almacenar la información relevante para el usuario y garantizar un buen funcionamiento de la aplicación
 * Image circle : Libreria que se uso para poder dar un toque estetico a las fotos de perfil de los usuarios
 * Shrim : Libreria que se uso para que sea nuestro objeto de carga en la aplicación
+* Swipedecorator : Permite hacer swip sobre los items de los post para poderlos eliminarlos de forma rapida y segura 
 
 
 ## Imagenes aplicativo
